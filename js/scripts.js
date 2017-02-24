@@ -10,3 +10,5 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x
 
 
 L.geoJSON(test).addTo(map);
+
+//next: how to rename test to station, how to add circle markers, how to graduate circle markers based on totalDocks
