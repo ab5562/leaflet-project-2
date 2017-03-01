@@ -1,4 +1,4 @@
-var test = 
+var stations = 
 {
   "type": "FeatureCollection",
   "features": 
