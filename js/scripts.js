@@ -12,27 +12,24 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x
 //L.geoJSON(stations).addTo(map);
 
 
-//L.geoJson(stations, {
-//	style: function (feature) {
-//      var customRadius;
-//      if (feature.properties.totalDocks == 10) {
-//      	customRadius = '10';
-//      }
-//    }
-//}
+var geojsonMarkerOptions = {
+    radius: 8,
+    fillColor: "deepskyblue",
+    color: "cyan",
+    weight: 1,
+    opacity: .2,
+    fillOpacity: 0.8
+};
 
 
 L.geoJson(stations, {
     pointToLayer: function (feature, latlng) {
-      return L.circleMarker(latlng, {
-        color: 'green',
-        fillColor: 'green',
-        fillOpacity: .5,
-        weight: 1,
-      }).setRadius(10);
+      return L.circleMarker(latlng, geojsonMarkerOptions);
     },
 }).bindPopup(function (layer) {
-    return layer.feature.properties.name;  //for some reason this will work for name but not totalDocks
+    return ' Total number of docks in kiosk: ' + layer.feature.properties.totalDocks +
+     		' Docks currently available: ' + layer.feature.properties.docksAvailable + 
+     		' Bikes currently available: ' + layer.feature.properties.bikesAvailable;  
 }).addTo(map);
 
 //L.geoJson(stations, {
@@ -41,3 +38,14 @@ L.geoJson(stations, {
 //
 //		})
 //	}
+
+//Add below back in if var geojsonMarkerOptions doesn't work
+//L.geoJson(stations, {
+//   pointToLayer: function (feature, latlng) {
+//      return L.circleMarker(latlng, {
+//        color: 'green',
+//        fillColor: 'green',
+//        fillOpacity: .5,
+//        weight: 1,
+//      }).setRadius(10);
+//    },
