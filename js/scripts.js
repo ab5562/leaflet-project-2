@@ -9,9 +9,9 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x
       }).addTo(map);
 
 
-//L.geoJSON(stations).addTo(map);
 
 
+//set up marker characteristics
 var geojsonMarkerOptions = {
     radius: 8,
     fillColor: "deepskyblue",
@@ -21,7 +21,7 @@ var geojsonMarkerOptions = {
     fillOpacity: 0.8
 };
 
-
+//create circleMarkers for stations with popup content
 L.geoJson(stations, {
     pointToLayer: function (feature, latlng) {
       return L.circleMarker(latlng, geojsonMarkerOptions);
@@ -32,20 +32,3 @@ L.geoJson(stations, {
      		' Bikes currently available: ' + layer.feature.properties.bikesAvailable;  
 }).addTo(map);
 
-//L.geoJson(stations, {
-//	onEachFeature: function (feature, layer) {
-//		layer.on('click', function(){
-//
-//		})
-//	}
-
-//Add below back in if var geojsonMarkerOptions doesn't work
-//L.geoJson(stations, {
-//   pointToLayer: function (feature, latlng) {
-//      return L.circleMarker(latlng, {
-//        color: 'green',
-//        fillColor: 'green',
-//        fillOpacity: .5,
-//        weight: 1,
-//      }).setRadius(10);
-//    },
